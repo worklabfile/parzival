@@ -9,16 +9,16 @@ const Analytics = () => {
     <div className="min-h-screen flex flex-col bg-esports-black text-white">
       <Navbar />
       
-      <div className="max-w-7xl mx-auto px-4 py-8 flex-grow">
+      <div className="w-full px-4 py-8 flex-grow">
         <div className="mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold mb-2">Аналитика производительности</h1>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2">Аналитика производительности</h1>
           <p className="text-gray-400">Подробная статистика и метрики производительности</p>
         </div>
         
         {/* Key Metrics */}
         <div className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Ключевые метрики производительности</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+          <h2 className="text-xl sm:text-2xl font-bold mb-4">Ключевые метрики производительности</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
             <StatCard title="Рейтинг" value={playerStats.rating} className="bg-gradient-to-br from-esports-darkGray to-esports-gray border border-esports-red" />
             <StatCard title="K/D" value={playerStats.kd} className="bg-gradient-to-br from-esports-darkGray to-esports-gray" />
             <StatCard title="DPR" value={playerStats.dpr} className="bg-gradient-to-br from-esports-darkGray to-esports-gray" />
@@ -30,18 +30,27 @@ const Analytics = () => {
         
         {/* Performance Chart */}
         <div className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Тенденции производительности (2023-2024)</h2>
-          <PerformanceChart data={performanceData} />
+          <h2 className="text-xl sm:text-2xl font-bold mb-4">Тенденции производительности (2023-2024)</h2>
+          <div className="hidden md:block">
+            <PerformanceChart data={performanceData} />
+          </div>
+          <div className="md:hidden">
+            <div className="w-full overflow-x-auto">
+              <div className="min-w-[600px]">
+                <PerformanceChart data={performanceData} />
+              </div>
+            </div>
+          </div>
         </div>
         
         {/* Detailed Stats */}
         <div className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Подробная статистика</h2>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <h2 className="text-xl sm:text-2xl font-bold mb-4">Подробная статистика</h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
             {/* First Column */}
-            <div className="bg-esports-darkGray rounded-lg p-6">
-              <h3 className="text-xl font-bold mb-4">Эффективность оружия</h3>
-              <div className="space-y-4">
+            <div className="bg-esports-darkGray rounded-lg p-4 sm:p-6">
+              <h3 className="text-lg sm:text-xl font-bold mb-4">Эффективность оружия</h3>
+              <div className="space-y-3 sm:space-y-4">
                 <div>
                   <div className="flex justify-between mb-1">
                     <span className="text-white">AK-47</span>
@@ -91,9 +100,9 @@ const Analytics = () => {
             </div>
             
             {/* Second Column */}
-            <div className="bg-esports-darkGray rounded-lg p-6">
-              <h3 className="text-xl font-bold mb-4">Эффективность на картах</h3>
-              <div className="space-y-4">
+            <div className="bg-esports-darkGray rounded-lg p-4 sm:p-6">
+              <h3 className="text-lg sm:text-xl font-bold mb-4">Эффективность по картам</h3>
+              <div className="space-y-3 sm:space-y-4">
                 <div>
                   <div className="flex justify-between mb-1">
                     <span className="text-white">Inferno</span>
@@ -146,9 +155,9 @@ const Analytics = () => {
         
         {/* Round Statistics */}
         <div className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Статистика раундов</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-esports-darkGray rounded-lg p-6">
+          <h2 className="text-xl sm:text-2xl font-bold mb-4">Статистика раундов</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            <div className="bg-esports-darkGray rounded-lg p-4 sm:p-6">
               <h3 className="text-lg font-bold mb-3 text-esports-red">Клатчи</h3>
               <div className="space-y-2">
                 <div className="flex justify-between">
@@ -174,7 +183,7 @@ const Analytics = () => {
               </div>
             </div>
             
-            <div className="bg-esports-darkGray rounded-lg p-6">
+            <div className="bg-esports-darkGray rounded-lg p-4 sm:p-6">
               <h3 className="text-lg font-bold mb-3 text-esports-red">Успешность входов</h3>
               <div className="space-y-2">
                 <div className="flex justify-between">
@@ -200,7 +209,7 @@ const Analytics = () => {
               </div>
             </div>
             
-            <div className="bg-esports-darkGray rounded-lg p-6">
+            <div className="bg-esports-darkGray rounded-lg p-4 sm:p-6">
               <h3 className="text-lg font-bold mb-3 text-esports-red">Эффективность по сторонам</h3>
               <div className="space-y-2">
                 <div className="flex justify-between">
@@ -230,65 +239,205 @@ const Analytics = () => {
         
         {/* Compare with Teammates */}
         <div>
-          <h2 className="text-2xl font-bold mb-4">Сравнение с командой</h2>
-          <div className="overflow-x-auto">
-            <table className="w-full bg-esports-darkGray rounded-lg overflow-hidden">
-              <thead>
-                <tr className="bg-esports-gray">
-                  <th className="py-3 px-4 text-left">Игрок</th>
-                  <th className="py-3 px-4 text-center">Рейтинг</th>
-                  <th className="py-3 px-4 text-center">K/D</th>
-                  <th className="py-3 px-4 text-center">Хедшоты %</th>
-                  <th className="py-3 px-4 text-center">Влияние</th>
-                  <th className="py-3 px-4 text-center">Урон за раунд</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="border-b border-esports-gray bg-esports-red bg-opacity-20">
-                  <td className="py-3 px-4 flex items-center">
-                    <span className="font-bold text-white">Parzival</span>
-                    <span className="ml-2 px-2 py-0.5 bg-esports-red rounded-full text-xs text-white">Parzival</span>
-                  </td>
-                  <td className="py-3 px-4 text-center text-white">1.21</td>
-                  <td className="py-3 px-4 text-center text-white">1.29</td>
-                  <td className="py-3 px-4 text-center text-white">48.2%</td>
-                  <td className="py-3 px-4 text-center text-white">1.18</td>
-                  <td className="py-3 px-4 text-center text-white">85.6</td>
-                </tr>
-                <tr className="border-b border-esports-gray">
-                  <td className="py-3 px-4 text-white">Lunax</td>
-                  <td className="py-3 px-4 text-center text-white">1.18</td>
-                  <td className="py-3 px-4 text-center text-white">1.25</td>
-                  <td className="py-3 px-4 text-center text-white">46.8%</td>
-                  <td className="py-3 px-4 text-center text-white">1.15</td>
-                  <td className="py-3 px-4 text-center text-white">83.2</td>
-                </tr>
-                <tr className="border-b border-esports-gray">
-                  <td className="py-3 px-4 text-white">GentlemaN</td>
-                  <td className="py-3 px-4 text-center text-white">1.15</td>
-                  <td className="py-3 px-4 text-center text-white">1.22</td>
-                  <td className="py-3 px-4 text-center text-white">45.1%</td>
-                  <td className="py-3 px-4 text-center text-white">1.14</td>
-                  <td className="py-3 px-4 text-center text-white">82.7</td>
-                </tr>
-                <tr className="border-b border-esports-gray">
-                  <td className="py-3 px-4 text-white">PorcelaiN</td>
-                  <td className="py-3 px-4 text-center text-white">1.12</td>
-                  <td className="py-3 px-4 text-center text-white">1.19</td>
-                  <td className="py-3 px-4 text-center text-white">43.5%</td>
-                  <td className="py-3 px-4 text-center text-white">1.08</td>
-                  <td className="py-3 px-4 text-center text-white">78.4</td>
-                </tr>
-                <tr>
-                  <td className="py-3 px-4 text-white">Rendyy</td>
-                  <td className="py-3 px-4 text-center text-white">1.08</td>
-                  <td className="py-3 px-4 text-center text-white">1.14</td>
-                  <td className="py-3 px-4 text-center text-white">42.3%</td>
-                  <td className="py-3 px-4 text-center text-white">1.05</td>
-                  <td className="py-3 px-4 text-center text-white">76.9</td>
-                </tr>
-              </tbody>
-            </table>
+          <h2 className="text-xl sm:text-2xl font-bold mb-4">Сравнение с командой</h2>
+          {/* Desktop Version */}
+          <div className="hidden md:block">
+            <div className="overflow-x-auto">
+              <div className="min-w-[800px]">
+                <table className="w-full bg-esports-darkGray rounded-lg overflow-hidden">
+                  <thead>
+                    <tr className="bg-esports-gray">
+                      <th className="py-3 px-4 text-left">Игрок</th>
+                      <th className="py-3 px-4 text-center">Рейтинг</th>
+                      <th className="py-3 px-4 text-center">K/D</th>
+                      <th className="py-3 px-4 text-center">Хедшоты %</th>
+                      <th className="py-3 px-4 text-center">Влияние</th>
+                      <th className="py-3 px-4 text-center">Урон за раунд</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="border-b border-esports-gray bg-esports-red bg-opacity-20">
+                      <td className="py-3 px-4">
+                        <span className="font-bold text-white">Parzival</span>
+                        <span className="ml-2 px-2 py-0.5 bg-esports-red rounded-full text-xs text-white">Вы</span>
+                      </td>
+                      <td className="py-3 px-4 text-center text-white">1.21</td>
+                      <td className="py-3 px-4 text-center text-white">1.29</td>
+                      <td className="py-3 px-4 text-center text-white">48.2%</td>
+                      <td className="py-3 px-4 text-center text-white">1.18</td>
+                      <td className="py-3 px-4 text-center text-white">85.6</td>
+                    </tr>
+                    <tr className="border-b border-esports-gray">
+                      <td className="py-3 px-4 text-white">Lunax</td>
+                      <td className="py-3 px-4 text-center text-white">1.18</td>
+                      <td className="py-3 px-4 text-center text-white">1.25</td>
+                      <td className="py-3 px-4 text-center text-white">46.8%</td>
+                      <td className="py-3 px-4 text-center text-white">1.15</td>
+                      <td className="py-3 px-4 text-center text-white">83.2</td>
+                    </tr>
+                    <tr className="border-b border-esports-gray">
+                      <td className="py-3 px-4 text-white">GentlemaN</td>
+                      <td className="py-3 px-4 text-center text-white">1.16</td>
+                      <td className="py-3 px-4 text-center text-white">1.22</td>
+                      <td className="py-3 px-4 text-center text-white">45.1%</td>
+                      <td className="py-3 px-4 text-center text-white">1.14</td>
+                      <td className="py-3 px-4 text-center text-white">82.7</td>
+                    </tr>
+                    <tr className="border-b border-esports-gray">
+                      <td className="py-3 px-4 text-white">PorcelaiN</td>
+                      <td className="py-3 px-4 text-center text-white">1.12</td>
+                      <td className="py-3 px-4 text-center text-white">1.19</td>
+                      <td className="py-3 px-4 text-center text-white">43.5%</td>
+                      <td className="py-3 px-4 text-center text-white">1.08</td>
+                      <td className="py-3 px-4 text-center text-white">78.4</td>
+                    </tr>
+                    <tr>
+                      <td className="py-3 px-4 text-white">Rendyy</td>
+                      <td className="py-3 px-4 text-center text-white">1.08</td>
+                      <td className="py-3 px-4 text-center text-white">1.14</td>
+                      <td className="py-3 px-4 text-center text-white">42.3%</td>
+                      <td className="py-3 px-4 text-center text-white">1.05</td>
+                      <td className="py-3 px-4 text-center text-white">76.9</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          {/* Mobile Version */}
+          <div className="md:hidden">
+            <div className="bg-esports-darkGray rounded-lg p-4">
+              <div className="space-y-4">
+                {/* Parzival */}
+                <div className="bg-esports-red bg-opacity-20 rounded-lg p-3">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center">
+                      <span className="font-bold text-white">Parzival</span>
+                      <span className="ml-2 px-2 py-0.5 bg-esports-red rounded-full text-xs text-white">Вы</span>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-sm text-gray-400">Рейтинг</div>
+                      <div className="text-white font-bold">1.21</div>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-3 gap-2 text-center">
+                    <div>
+                      <div className="text-sm text-gray-400">K/D</div>
+                      <div className="text-white font-bold">1.29</div>
+                    </div>
+                    <div>
+                      <div className="text-sm text-gray-400">Хедшоты</div>
+                      <div className="text-white font-bold">48.2%</div>
+                    </div>
+                    <div>
+                      <div className="text-sm text-gray-400">Влияние</div>
+                      <div className="text-white font-bold">1.18</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Lunax */}
+                <div className="bg-esports-gray rounded-lg p-3">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="text-white">Lunax</div>
+                    <div className="text-right">
+                      <div className="text-sm text-gray-400">Рейтинг</div>
+                      <div className="text-white font-bold">1.18</div>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-3 gap-2 text-center">
+                    <div>
+                      <div className="text-sm text-gray-400">K/D</div>
+                      <div className="text-white font-bold">1.25</div>
+                    </div>
+                    <div>
+                      <div className="text-sm text-gray-400">Хедшоты</div>
+                      <div className="text-white font-bold">46.8%</div>
+                    </div>
+                    <div>
+                      <div className="text-sm text-gray-400">Влияние</div>
+                      <div className="text-white font-bold">1.15</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* GentlemaN */}
+                <div className="bg-esports-gray rounded-lg p-3">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="text-white">GentlemaN</div>
+                    <div className="text-right">
+                      <div className="text-sm text-gray-400">Рейтинг</div>
+                      <div className="text-white font-bold">1.16</div>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-3 gap-2 text-center">
+                    <div>
+                      <div className="text-sm text-gray-400">K/D</div>
+                      <div className="text-white font-bold">1.22</div>
+                    </div>
+                    <div>
+                      <div className="text-sm text-gray-400">Хедшоты</div>
+                      <div className="text-white font-bold">45.1%</div>
+                    </div>
+                    <div>
+                      <div className="text-sm text-gray-400">Влияние</div>
+                      <div className="text-white font-bold">1.14</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* PorcelaiN */}
+                <div className="bg-esports-gray rounded-lg p-3">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="text-white">PorcelaiN</div>
+                    <div className="text-right">
+                      <div className="text-sm text-gray-400">Рейтинг</div>
+                      <div className="text-white font-bold">1.12</div>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-3 gap-2 text-center">
+                    <div>
+                      <div className="text-sm text-gray-400">K/D</div>
+                      <div className="text-white font-bold">1.19</div>
+                    </div>
+                    <div>
+                      <div className="text-sm text-gray-400">Хедшоты</div>
+                      <div className="text-white font-bold">43.5%</div>
+                    </div>
+                    <div>
+                      <div className="text-sm text-gray-400">Влияние</div>
+                      <div className="text-white font-bold">1.08</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Rendyy */}
+                <div className="bg-esports-gray rounded-lg p-3">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="text-white">Rendyy</div>
+                    <div className="text-right">
+                      <div className="text-sm text-gray-400">Рейтинг</div>
+                      <div className="text-white font-bold">1.08</div>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-3 gap-2 text-center">
+                    <div>
+                      <div className="text-sm text-gray-400">K/D</div>
+                      <div className="text-white font-bold">1.14</div>
+                    </div>
+                    <div>
+                      <div className="text-sm text-gray-400">Хедшоты</div>
+                      <div className="text-white font-bold">42.3%</div>
+                    </div>
+                    <div>
+                      <div className="text-sm text-gray-400">Влияние</div>
+                      <div className="text-white font-bold">1.05</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
