@@ -259,7 +259,7 @@ const Analytics = () => {
                     <tr className="border-b border-esports-gray bg-esports-red bg-opacity-20">
                       <td className="py-3 px-4">
                         <span className="font-bold text-white">Parzival</span>
-                        <span className="ml-2 px-2 py-0.5 bg-esports-red rounded-full text-xs text-white">Вы</span>
+                        <span className="ml-2 px-2 py-0.5 bg-esports-red rounded-full text-xs text-white">Parzival</span>
                       </td>
                       <td className="py-3 px-4 text-center text-white">1.21</td>
                       <td className="py-3 px-4 text-center text-white">1.29</td>
