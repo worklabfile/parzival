@@ -3,9 +3,12 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
-import { toast } from 'sonner';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/components/ui/use-toast';
 
 const Contact = () => {
+  const { toast } = useToast();
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -21,16 +24,53 @@ const Contact = () => {
     }));
   };
   
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    toast.success('Message sent successfully! We will get back to you soon.');
-    setFormData({
-      name: '',
-      email: '',
-      subject: '',
-      message: ''
-    });
+    
+    if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+      toast({
+        title: "Ошибка",
+        description: "Пожалуйста, заполните все поля формы",
+        variant: "destructive"
+      });
+      return;
+    }
+    
+    try {
+      setLoading(true);
+      
+      const { error } = await supabase
+        .from('messages')
+        .insert({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message
+        });
+      
+      if (error) throw error;
+      
+      toast({
+        title: "Сообщение отправлено",
+        description: "Мы свяжемся с вами в ближайшее время!",
+      });
+      
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      });
+    } catch (error) {
+      console.error('Ошибка при отправке сообщения:', error);
+      toast({
+        title: "Не удалось отправить сообщение",
+        description: "Пожалуйста, попробуйте еще раз позже",
+        variant: "destructive"
+      });
+    } finally {
+      setLoading(false);
+    }
   };
   
   return (
@@ -39,34 +79,34 @@ const Contact = () => {
       
       <div className="max-w-7xl mx-auto px-4 py-8 flex-grow">
         <div className="mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold mb-2">Contact</h1>
-          <p className="text-gray-400">Get in touch with Parzival and the team</p>
+          <h1 className="text-3xl md:text-4xl font-bold mb-2">Контакты</h1>
+          <p className="text-gray-400">Свяжитесь с Parzival и командой</p>
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Contact Information */}
+          {/* Контактная информация */}
           <div className="lg:col-span-1">
             <div className="bg-esports-darkGray rounded-lg p-6 h-full">
-              <h2 className="text-2xl font-bold mb-6">Contact Information</h2>
+              <h2 className="text-2xl font-bold mb-6">Контактная информация</h2>
               
               <div className="mb-6">
-                <h3 className="text-lg font-bold mb-2 text-esports-red">Business Inquiries</h3>
+                <h3 className="text-lg font-bold mb-2 text-esports-red">Деловые запросы</h3>
                 <p className="text-gray-300 mb-1">Email: business@parzival.gg</p>
-                <p className="text-gray-300">Phone: +7 (XXX) XXX-XX-XX</p>
+                <p className="text-gray-300">Телефон: +7 (XXX) XXX-XX-XX</p>
               </div>
               
               <div className="mb-6">
-                <h3 className="text-lg font-bold mb-2 text-esports-red">Fan Mail</h3>
+                <h3 className="text-lg font-bold mb-2 text-esports-red">Для фанатов</h3>
                 <p className="text-gray-300 mb-1">Email: fans@parzival.gg</p>
               </div>
               
               <div className="mb-6">
-                <h3 className="text-lg font-bold mb-2 text-esports-red">Media Inquiries</h3>
+                <h3 className="text-lg font-bold mb-2 text-esports-red">Для СМИ</h3>
                 <p className="text-gray-300 mb-1">Email: press@parzival.gg</p>
               </div>
               
               <div className="mb-6">
-                <h3 className="text-lg font-bold mb-2 text-esports-red">Social Media</h3>
+                <h3 className="text-lg font-bold mb-2 text-esports-red">Социальные сети</h3>
                 <div className="flex space-x-4">
                   <a href="#" className="text-gray-300 hover:text-esports-red">
                     <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -92,23 +132,23 @@ const Contact = () => {
               </div>
               
               <div>
-                <h3 className="text-lg font-bold mb-2 text-esports-red">Team Location</h3>
+                <h3 className="text-lg font-bold mb-2 text-esports-red">Локация команды</h3>
                 <p className="text-gray-300">
-                  Virtus.pro Headquarters<br />
-                  Moscow, Russia
+                  Штаб-квартира Virtus.pro<br />
+                  Москва, Россия
                 </p>
               </div>
             </div>
           </div>
           
-          {/* Contact Form */}
+          {/* Форма обратной связи */}
           <div className="lg:col-span-2">
             <div className="bg-esports-darkGray rounded-lg p-6">
-              <h2 className="text-2xl font-bold mb-6">Send a Message</h2>
+              <h2 className="text-2xl font-bold mb-6">Отправить сообщение</h2>
               <form onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                   <div>
-                    <label htmlFor="name" className="block text-white mb-2">Your Name</label>
+                    <label htmlFor="name" className="block text-white mb-2">Ваше имя</label>
                     <input
                       type="text"
                       id="name"
@@ -120,7 +160,7 @@ const Contact = () => {
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-white mb-2">Your Email</label>
+                    <label htmlFor="email" className="block text-white mb-2">Ваш Email</label>
                     <input
                       type="email"
                       id="email"
@@ -134,7 +174,7 @@ const Contact = () => {
                 </div>
                 
                 <div className="mb-6">
-                  <label htmlFor="subject" className="block text-white mb-2">Subject</label>
+                  <label htmlFor="subject" className="block text-white mb-2">Тема</label>
                   <select
                     id="subject"
                     name="subject"
@@ -143,16 +183,16 @@ const Contact = () => {
                     className="w-full bg-esports-gray border border-esports-lightGray text-white px-4 py-2 rounded focus:outline-none focus:border-esports-red"
                     required
                   >
-                    <option value="">Select a subject</option>
-                    <option value="Fan Mail">Fan Mail</option>
-                    <option value="Business Inquiry">Business Inquiry</option>
-                    <option value="Media Request">Media Request</option>
-                    <option value="Other">Other</option>
+                    <option value="">Выберите тему</option>
+                    <option value="Фанатская почта">Фанатская почта</option>
+                    <option value="Деловой запрос">Деловой запрос</option>
+                    <option value="Запрос СМИ">Запрос СМИ</option>
+                    <option value="Другое">Другое</option>
                   </select>
                 </div>
                 
                 <div className="mb-6">
-                  <label htmlFor="message" className="block text-white mb-2">Your Message</label>
+                  <label htmlFor="message" className="block text-white mb-2">Ваше сообщение</label>
                   <textarea
                     id="message"
                     name="message"
@@ -167,44 +207,45 @@ const Contact = () => {
                 <Button 
                   type="submit" 
                   className="w-full bg-esports-red hover:bg-esports-darkRed text-white font-bold py-3"
+                  disabled={loading}
                 >
-                  Send Message
+                  {loading ? "Отправка..." : "Отправить сообщение"}
                 </Button>
               </form>
             </div>
           </div>
         </div>
         
-        {/* FAQ Section */}
+        {/* Раздел FAQ */}
         <div className="mt-12">
-          <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+          <h2 className="text-2xl font-bold mb-6">Часто задаваемые вопросы</h2>
           
           <div className="space-y-6">
             <div className="bg-esports-darkGray rounded-lg p-6">
-              <h3 className="text-xl font-bold mb-2">How can I request an autograph?</h3>
+              <h3 className="text-xl font-bold mb-2">Как запросить автограф?</h3>
               <p className="text-gray-300">
-                We offer autographed merchandise through our official shop. For personal autograph requests, please email fans@parzival.gg with your request details.
+                Мы предлагаем товары с автографами через наш официальный магазин. Для личных запросов на автограф, пожалуйста, напишите на fans@parzival.gg с деталями вашего запроса.
               </p>
             </div>
             
             <div className="bg-esports-darkGray rounded-lg p-6">
-              <h3 className="text-xl font-bold mb-2">Does Parzival offer coaching services?</h3>
+              <h3 className="text-xl font-bold mb-2">Предлагает ли Parzival услуги тренировок?</h3>
               <p className="text-gray-300">
-                Yes, Parzival occasionally offers limited coaching sessions. Sign up for our newsletter to be notified when slots become available.
+                Да, Parzival иногда предлагает ограниченные тренировочные сессии. Подпишитесь на нашу рассылку, чтобы получать уведомления, когда места станут доступны.
               </p>
             </div>
             
             <div className="bg-esports-darkGray rounded-lg p-6">
-              <h3 className="text-xl font-bold mb-2">How can I sponsor Parzival?</h3>
+              <h3 className="text-xl font-bold mb-2">Как стать спонсором Parzival?</h3>
               <p className="text-gray-300">
-                For sponsorship opportunities, please contact our business team at business@parzival.gg with details about your company and proposal.
+                Для возможностей спонсорства, пожалуйста, свяжитесь с нашей бизнес-командой по адресу business@parzival.gg с информацией о вашей компании и предложением.
               </p>
             </div>
             
             <div className="bg-esports-darkGray rounded-lg p-6">
-              <h3 className="text-xl font-bold mb-2">When is Parzival streaming next?</h3>
+              <h3 className="text-xl font-bold mb-2">Когда следующий стрим Parzival?</h3>
               <p className="text-gray-300">
-                Follow Parzival's social media accounts for the most up-to-date streaming schedule and announcements.
+                Следите за страницами Parzival в социальных сетях для получения самого актуального расписания стримов и объявлений.
               </p>
             </div>
           </div>
