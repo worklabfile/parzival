@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -52,6 +53,14 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				esports: {
+					red: '#FF0000',
+					darkRed: '#CC0000',
+					black: '#0A0A0A',
+					darkGray: '#1A1A1A',
+					gray: '#2A2A2A',
+					lightGray: '#3A3A3A',
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -84,13 +93,30 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'pulse-red': {
+					'0%, 100%': { 
+						backgroundColor: '#FF0000', 
+						boxShadow: '0 0 5px #FF0000' 
+					},
+					'50%': { 
+						backgroundColor: '#CC0000', 
+						boxShadow: '0 0 15px #FF0000' 
+					},
+				},
+				'slide-in': {
+					'0%': { transform: 'translateX(-100%)' },
+					'100%': { transform: 'translateX(0)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'pulse-red': 'pulse-red 2s ease-in-out infinite',
+				'slide-in': 'slide-in 0.3s ease-out'
 			}
 		}
 	},
 	plugins: [require("tailwindcss-animate")],
 } satisfies Config;
+
