@@ -1,43 +1,104 @@
 
+import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import MerchCard from '@/components/MerchCard';
+import CartModal from '@/components/CartModal';
 import { merchItems } from '@/data/playerData';
+import { ShoppingCart } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { useCart } from '@/hooks/use-cart';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
 
 const Shop = () => {
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const { totalItems } = useCart();
+  const [email, setEmail] = useState('');
+  const { toast } = useToast();
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    try {
+      const { error } = await supabase.from('subscribers').insert({ email });
+      
+      if (error) {
+        if (error.code === '23505') {
+          toast({
+            title: 'Уже подписаны',
+            description: 'Вы уже подписаны на нашу рассылку.',
+            variant: 'destructive',
+          });
+        } else {
+          throw error;
+        }
+      } else {
+        toast({
+          title: 'Подписка оформлена',
+          description: 'Спасибо за подписку на нашу рассылку!',
+        });
+        setEmail('');
+      }
+    } catch (error) {
+      console.error('Ошибка при оформлении подписки:', error);
+      toast({
+        title: 'Ошибка',
+        description: 'Произошла ошибка при оформлении подписки. Пожалуйста, повторите попытку позже.',
+        variant: 'destructive',
+      });
+    }
+  };
+  
   return (
     <div className="min-h-screen flex flex-col bg-esports-black text-white">
       <Navbar />
       
       <div className="max-w-7xl mx-auto px-4 py-8 flex-grow">
-        <div className="mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold mb-2">Official Merchandise</h1>
-          <p className="text-gray-400">Get the latest Parzival and team gear</p>
+        <div className="mb-8 flex justify-between items-center">
+          <div>
+            <h1 className="text-3xl md:text-4xl font-bold mb-2">Официальный Мерч</h1>
+            <p className="text-gray-400">Приобретите последние новинки Parzival и командного снаряжения</p>
+          </div>
+          
+          <Button 
+            onClick={() => setIsCartOpen(true)}
+            className="bg-esports-red hover:bg-esports-darkRed relative"
+          >
+            <ShoppingCart className="mr-2" />
+            Корзина
+            {totalItems > 0 && (
+              <span className="absolute -top-2 -right-2 bg-white text-esports-red rounded-full text-xs w-5 h-5 flex items-center justify-center">
+                {totalItems}
+              </span>
+            )}
+          </Button>
         </div>
         
-        {/* Featured Product */}
+        {/* Популярный Товар */}
         <div className="mb-12">
           <div className="relative overflow-hidden rounded-lg">
             <div className="absolute inset-0 bg-gradient-to-r from-esports-black to-transparent z-10"></div>
-            <img src="/placeholder.svg" alt="Featured Jersey" className="w-full h-64 md:h-96 object-cover" />
+            <img src="/placeholder.svg" alt="Популярный Джерси" className="w-full h-64 md:h-96 object-cover" />
             <div className="absolute top-0 left-0 p-6 md:p-12 z-20 max-w-lg">
-              <div className="mb-2 inline-block px-3 py-1 bg-esports-red text-white text-sm font-bold rounded-full">NEW ARRIVAL</div>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">2024 Pro Player Jersey</h2>
-              <p className="text-gray-200 mb-6">Official team jersey featuring Parzival's signature design. Made with premium materials for maximum comfort and performance.</p>
+              <div className="mb-2 inline-block px-3 py-1 bg-esports-red text-white text-sm font-bold rounded-full">НОВИНКА</div>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Джерси Игрока 2024</h2>
+              <p className="text-gray-200 mb-6">Официальный командный джерси с дизайном от Parzival. Изготовлен из премиальных материалов для максимального комфорта и производительности.</p>
               <button className="bg-esports-red hover:bg-esports-darkRed text-white font-bold py-3 px-8 rounded">
-                Shop Now
+                Купить Сейчас
               </button>
             </div>
           </div>
         </div>
         
-        {/* All Products */}
+        {/* Все Товары */}
         <div className="mb-12">
-          <h2 className="text-2xl font-bold mb-6">All Products</h2>
+          <h2 className="text-2xl font-bold mb-6">Все Товары</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {merchItems.map((item, index) => (
               <MerchCard 
                 key={index}
+                id={`product-${index}`}
                 name={item.name}
                 price={item.price}
                 image={item.image}
@@ -46,58 +107,66 @@ const Shop = () => {
           </div>
         </div>
         
-        {/* Categories */}
+        {/* Категории */}
         <div className="mb-12">
-          <h2 className="text-2xl font-bold mb-6">Shop by Category</h2>
+          <h2 className="text-2xl font-bold mb-6">Категории</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             <div className="relative overflow-hidden rounded-lg h-48 group cursor-pointer">
               <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-30 transition-all duration-300 z-10"></div>
-              <img src="/placeholder.svg" alt="Apparel" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
+              <img src="/placeholder.svg" alt="Одежда" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
               <div className="absolute inset-0 flex items-center justify-center z-20">
-                <h3 className="text-white text-2xl font-bold">Apparel</h3>
+                <h3 className="text-white text-2xl font-bold">Одежда</h3>
               </div>
             </div>
             <div className="relative overflow-hidden rounded-lg h-48 group cursor-pointer">
               <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-30 transition-all duration-300 z-10"></div>
-              <img src="/placeholder.svg" alt="Accessories" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
+              <img src="/placeholder.svg" alt="Аксессуары" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
               <div className="absolute inset-0 flex items-center justify-center z-20">
-                <h3 className="text-white text-2xl font-bold">Accessories</h3>
+                <h3 className="text-white text-2xl font-bold">Аксессуары</h3>
               </div>
             </div>
             <div className="relative overflow-hidden rounded-lg h-48 group cursor-pointer">
               <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-30 transition-all duration-300 z-10"></div>
-              <img src="/placeholder.svg" alt="Gaming Gear" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
+              <img src="/placeholder.svg" alt="Игровые Принадлежности" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
               <div className="absolute inset-0 flex items-center justify-center z-20">
-                <h3 className="text-white text-2xl font-bold">Gaming Gear</h3>
+                <h3 className="text-white text-2xl font-bold">Игровые Принадлежности</h3>
               </div>
             </div>
           </div>
         </div>
         
-        {/* Newsletter */}
+        {/* Рассылка */}
         <div className="bg-esports-darkGray rounded-lg p-8">
           <div className="md:flex md:items-center md:justify-between">
             <div className="md:w-2/3">
-              <h2 className="text-2xl font-bold mb-4">Stay Updated</h2>
+              <h2 className="text-2xl font-bold mb-4">Будьте в курсе</h2>
               <p className="text-gray-400 mb-6 md:mb-0">
-                Subscribe to get updates on new merchandise, exclusive offers, and limited edition drops.
+                Подпишитесь, чтобы получать обновления о новых товарах, эксклюзивных предложениях и лимитированных коллекциях.
               </p>
             </div>
             <div className="md:w-1/3">
-              <div className="flex">
+              <form onSubmit={handleSubscribe} className="flex">
                 <input
                   type="email"
-                  placeholder="Your email"
+                  placeholder="Ваш email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="bg-esports-gray border border-esports-lightGray text-white px-4 py-2 rounded-l w-full focus:outline-none focus:border-esports-red"
+                  required
                 />
-                <button className="bg-esports-red hover:bg-esports-darkRed text-white font-bold py-2 px-4 rounded-r">
-                  Subscribe
+                <button 
+                  type="submit" 
+                  className="bg-esports-red hover:bg-esports-darkRed text-white font-bold py-2 px-4 rounded-r"
+                >
+                  Подписаться
                 </button>
-              </div>
+              </form>
             </div>
           </div>
         </div>
       </div>
+      
+      <CartModal isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
       
       <Footer />
     </div>

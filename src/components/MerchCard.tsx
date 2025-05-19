@@ -1,14 +1,30 @@
 
 import { ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useCart } from "@/hooks/use-cart";
 
 interface MerchCardProps {
+  id?: string;
   name: string;
   price: string;
   image: string;
 }
 
-const MerchCard = ({ name, price, image }: MerchCardProps) => {
+const MerchCard = ({ id = "", name, price, image }: MerchCardProps) => {
+  const { addToCart } = useCart();
+
+  const handleAddToCart = () => {
+    // Конвертируем строку цены в число (удаляем символы валюты и пробелы)
+    const numericPrice = parseFloat(price.replace(/[^\d.-]/g, ""));
+    
+    addToCart({
+      id: id || `${name}-${Date.now()}`,
+      name,
+      price: numericPrice,
+      image
+    });
+  };
+
   return (
     <div className="bg-esports-darkGray rounded-md overflow-hidden hover:shadow-lg hover:shadow-esports-red/20 transition-all duration-300">
       <div className="h-48 overflow-hidden">
@@ -25,9 +41,10 @@ const MerchCard = ({ name, price, image }: MerchCardProps) => {
           <Button 
             size="sm" 
             className="bg-esports-red hover:bg-esports-darkRed text-white"
+            onClick={handleAddToCart}
           >
             <ShoppingCart className="w-4 h-4 mr-1" />
-            Add
+            Добавить
           </Button>
         </div>
       </div>
