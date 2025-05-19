@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -7,13 +6,13 @@ import CartModal from '@/components/CartModal';
 import { merchItems } from '@/data/playerData';
 import { ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useCart } from '@/hooks/use-cart';
+import { useCartStore } from '@/store/cart';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 
 const Shop = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const { totalItems } = useCart();
+  const { totalItems } = useCartStore();
   const [email, setEmail] = useState('');
   const { toast } = useToast();
 
@@ -125,25 +124,17 @@ const Shop = () => {
                 <h3 className="text-white text-2xl font-bold">Аксессуары</h3>
               </div>
             </div>
-            <div className="relative overflow-hidden rounded-lg h-48 group cursor-pointer">
-              <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-30 transition-all duration-300 z-10"></div>
-              <img src="/placeholder.svg" alt="Игровые Принадлежности" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
-              <div className="absolute inset-0 flex items-center justify-center z-20">
-                <h3 className="text-white text-2xl font-bold">Игровые Принадлежности</h3>
-              </div>
-            </div>
           </div>
         </div>
         
-        {/* Рассылка */}
-        <div className="bg-esports-darkGray rounded-lg p-8">
-          <div className="md:flex md:items-center md:justify-between">
+        {/* Подписка на рассылку */}
+        <div className="bg-esports-gray rounded-lg p-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="md:w-2/3">
-              <h2 className="text-2xl font-bold mb-4">Будьте в курсе</h2>
-              <p className="text-gray-400 mb-6 md:mb-0">
-                Подпишитесь, чтобы получать обновления о новых товарах, эксклюзивных предложениях и лимитированных коллекциях.
-              </p>
+              <h2 className="text-2xl font-bold mb-2">Подпишитесь на рассылку</h2>
+              <p className="text-gray-400">Получайте уведомления о новых товарах и специальных предложениях</p>
             </div>
+            
             <div className="md:w-1/3">
               <form onSubmit={handleSubscribe} className="flex">
                 <input

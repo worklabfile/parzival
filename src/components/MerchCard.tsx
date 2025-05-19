@@ -1,7 +1,6 @@
-
 import { ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useCart } from "@/hooks/use-cart";
+import { useCartStore } from "@/store/cart";
 
 interface MerchCardProps {
   id?: string;
@@ -11,13 +10,13 @@ interface MerchCardProps {
 }
 
 const MerchCard = ({ id = "", name, price, image }: MerchCardProps) => {
-  const { addToCart } = useCart();
+  const { addItem } = useCartStore();
 
   const handleAddToCart = () => {
     // Конвертируем строку цены в число (удаляем символы валюты и пробелы)
     const numericPrice = parseFloat(price.replace(/[^\d.-]/g, ""));
     
-    addToCart({
+    addItem({
       id: id || `${name}-${Date.now()}`,
       name,
       price: numericPrice,

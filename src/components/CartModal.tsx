@@ -1,8 +1,7 @@
-
 import React from 'react';
 import { X, Plus, Minus, ShoppingCart, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useCart } from '@/hooks/use-cart';
+import { useCartStore } from '@/store/cart';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 
@@ -12,7 +11,7 @@ interface CartModalProps {
 }
 
 const CartModal = ({ isOpen, onClose }: CartModalProps) => {
-  const { cart, removeFromCart, updateQuantity, clearCart, totalPrice } = useCart();
+  const { items: cart, removeItem: removeFromCart, updateQuantity, clearCart, totalPrice } = useCartStore();
   const [name, setName] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [isSubmitting, setIsSubmitting] = React.useState(false);

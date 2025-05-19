@@ -107,32 +107,32 @@ export const performanceData = [
 export const merchItems = [
   {
     name: "Parzival Pro Jersey",
-    price: "$79.99",
+    price: "₽7900", 
     image: "/placeholder.svg"
   },
   {
     name: "Team Hoodie",
-    price: "$64.99",
+    price: "₽6400",
     image: "/placeholder.svg"
   },
   {
     name: "Signature Mouse Pad",
-    price: "$29.99",
+    price: "₽2900",
     image: "/placeholder.svg"
   },
   {
     name: "Limited Edition Snapback",
-    price: "$34.99",
+    price: "₽3400",
     image: "/placeholder.svg"
   },
   {
     name: "Parzival Gaming Mouse",
-    price: "$89.99",
+    price: "₽8900",
     image: "/placeholder.svg"
   },
   {
     name: "Championship T-Shirt",
-    price: "$39.99",
+    price: "₽3900",
     image: "/placeholder.svg"
   }
 ];
