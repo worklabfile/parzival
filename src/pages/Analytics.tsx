@@ -1,4 +1,3 @@
-
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import StatCard from '@/components/StatCard';
@@ -12,36 +11,36 @@ const Analytics = () => {
       
       <div className="max-w-7xl mx-auto px-4 py-8 flex-grow">
         <div className="mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold mb-2">Performance Analytics</h1>
-          <p className="text-gray-400">In-depth statistics and performance metrics</p>
+          <h1 className="text-3xl md:text-4xl font-bold mb-2">Аналитика производительности</h1>
+          <p className="text-gray-400">Подробная статистика и метрики производительности</p>
         </div>
         
         {/* Key Metrics */}
         <div className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Key Performance Metrics</h2>
+          <h2 className="text-2xl font-bold mb-4">Ключевые метрики производительности</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-            <StatCard title="Rating" value={playerStats.rating} className="bg-gradient-to-br from-esports-darkGray to-esports-gray border border-esports-red" />
-            <StatCard title="K/D Ratio" value={playerStats.kd} className="bg-gradient-to-br from-esports-darkGray to-esports-gray" />
+            <StatCard title="Рейтинг" value={playerStats.rating} className="bg-gradient-to-br from-esports-darkGray to-esports-gray border border-esports-red" />
+            <StatCard title="K/D" value={playerStats.kd} className="bg-gradient-to-br from-esports-darkGray to-esports-gray" />
             <StatCard title="DPR" value={playerStats.dpr} className="bg-gradient-to-br from-esports-darkGray to-esports-gray" />
             <StatCard title="KPR" value={playerStats.kpr} className="bg-gradient-to-br from-esports-darkGray to-esports-gray" />
-            <StatCard title="Impact" value={playerStats.impact} className="bg-gradient-to-br from-esports-darkGray to-esports-gray" />
-            <StatCard title="Headshot %" value={playerStats.headshots} className="bg-gradient-to-br from-esports-darkGray to-esports-gray" />
+            <StatCard title="Влияние" value={playerStats.impact} className="bg-gradient-to-br from-esports-darkGray to-esports-gray" />
+            <StatCard title="Хедшоты %" value={playerStats.headshots} className="bg-gradient-to-br from-esports-darkGray to-esports-gray" />
           </div>
         </div>
         
         {/* Performance Chart */}
         <div className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Performance Trends (2023-2024)</h2>
+          <h2 className="text-2xl font-bold mb-4">Тенденции производительности (2023-2024)</h2>
           <PerformanceChart data={performanceData} />
         </div>
         
         {/* Detailed Stats */}
         <div className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Detailed Statistics</h2>
+          <h2 className="text-2xl font-bold mb-4">Подробная статистика</h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* First Column */}
             <div className="bg-esports-darkGray rounded-lg p-6">
-              <h3 className="text-xl font-bold mb-4">Weapon Performance</h3>
+              <h3 className="text-xl font-bold mb-4">Эффективность оружия</h3>
               <div className="space-y-4">
                 <div>
                   <div className="flex justify-between mb-1">
@@ -93,7 +92,7 @@ const Analytics = () => {
             
             {/* Second Column */}
             <div className="bg-esports-darkGray rounded-lg p-6">
-              <h3 className="text-xl font-bold mb-4">Map Performance</h3>
+              <h3 className="text-xl font-bold mb-4">Эффективность на картах</h3>
               <div className="space-y-4">
                 <div>
                   <div className="flex justify-between mb-1">
@@ -147,10 +146,10 @@ const Analytics = () => {
         
         {/* Round Statistics */}
         <div className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Round Statistics</h2>
+          <h2 className="text-2xl font-bold mb-4">Статистика раундов</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-esports-darkGray rounded-lg p-6">
-              <h3 className="text-lg font-bold mb-3 text-esports-red">Clutches</h3>
+              <h3 className="text-lg font-bold mb-3 text-esports-red">Клатчи</h3>
               <div className="space-y-2">
                 <div className="flex justify-between">
                   <span className="text-gray-400">1v1</span>
@@ -176,52 +175,52 @@ const Analytics = () => {
             </div>
             
             <div className="bg-esports-darkGray rounded-lg p-6">
-              <h3 className="text-lg font-bold mb-3 text-esports-red">Entry Success</h3>
+              <h3 className="text-lg font-bold mb-3 text-esports-red">Успешность входов</h3>
               <div className="space-y-2">
                 <div className="flex justify-between">
-                  <span className="text-gray-400">T Side Entry Kills</span>
+                  <span className="text-gray-400">Входные фраги за T</span>
                   <span className="text-white font-bold">62%</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-400">CT Side Entry Kills</span>
+                  <span className="text-gray-400">Входные фраги за CT</span>
                   <span className="text-white font-bold">57%</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-400">Opening Duel Win %</span>
+                  <span className="text-gray-400">Победы в первых дуэлях</span>
                   <span className="text-white font-bold">64%</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-400">Entry Attempts</span>
+                  <span className="text-gray-400">Попытки входа</span>
                   <span className="text-white font-bold">842</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-400">Successful Entries</span>
+                  <span className="text-gray-400">Успешные входы</span>
                   <span className="text-white font-bold">521</span>
                 </div>
               </div>
             </div>
             
             <div className="bg-esports-darkGray rounded-lg p-6">
-              <h3 className="text-lg font-bold mb-3 text-esports-red">Side Performance</h3>
+              <h3 className="text-lg font-bold mb-3 text-esports-red">Эффективность по сторонам</h3>
               <div className="space-y-2">
                 <div className="flex justify-between">
-                  <span className="text-gray-400">T Side Rating</span>
+                  <span className="text-gray-400">Рейтинг за T</span>
                   <span className="text-white font-bold">1.18</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-400">CT Side Rating</span>
+                  <span className="text-gray-400">Рейтинг за CT</span>
                   <span className="text-white font-bold">1.24</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-400">T Side Win %</span>
+                  <span className="text-gray-400">Процент побед за T</span>
                   <span className="text-white font-bold">58%</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-400">CT Side Win %</span>
+                  <span className="text-gray-400">Процент побед за CT</span>
                   <span className="text-white font-bold">66%</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-400">Preferred Side</span>
+                  <span className="text-gray-400">Предпочитаемая сторона</span>
                   <span className="text-white font-bold">CT</span>
                 </div>
               </div>
@@ -231,24 +230,24 @@ const Analytics = () => {
         
         {/* Compare with Teammates */}
         <div>
-          <h2 className="text-2xl font-bold mb-4">Team Comparison</h2>
+          <h2 className="text-2xl font-bold mb-4">Сравнение с командой</h2>
           <div className="overflow-x-auto">
             <table className="w-full bg-esports-darkGray rounded-lg overflow-hidden">
               <thead>
                 <tr className="bg-esports-gray">
-                  <th className="py-3 px-4 text-left">Player</th>
-                  <th className="py-3 px-4 text-center">Rating</th>
+                  <th className="py-3 px-4 text-left">Игрок</th>
+                  <th className="py-3 px-4 text-center">Рейтинг</th>
                   <th className="py-3 px-4 text-center">K/D</th>
-                  <th className="py-3 px-4 text-center">HS%</th>
-                  <th className="py-3 px-4 text-center">Impact</th>
-                  <th className="py-3 px-4 text-center">ADR</th>
+                  <th className="py-3 px-4 text-center">Хедшоты %</th>
+                  <th className="py-3 px-4 text-center">Влияние</th>
+                  <th className="py-3 px-4 text-center">Урон за раунд</th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-esports-gray bg-esports-red bg-opacity-20">
                   <td className="py-3 px-4 flex items-center">
                     <span className="font-bold text-white">Parzival</span>
-                    <span className="ml-2 px-2 py-0.5 bg-esports-red rounded-full text-xs text-white">You</span>
+                    <span className="ml-2 px-2 py-0.5 bg-esports-red rounded-full text-xs text-white">Parzival</span>
                   </td>
                   <td className="py-3 px-4 text-center text-white">1.21</td>
                   <td className="py-3 px-4 text-center text-white">1.29</td>

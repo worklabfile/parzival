@@ -1,4 +1,3 @@
-
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AchievementCard from '@/components/AchievementCard';
@@ -11,14 +10,14 @@ const Achievements = () => {
       
       <div className="max-w-7xl mx-auto px-4 py-8 flex-grow">
         <div className="mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold mb-2">Achievements</h1>
-          <p className="text-gray-400">Tournament wins, awards, and recognitions</p>
+          <h1 className="text-3xl md:text-4xl font-bold mb-2">Достижения</h1>
+          <p className="text-gray-400">Победы на турнирах, награды и признания</p>
         </div>
         
         {/* Major Trophies Display */}
         <div className="mb-12">
           <h2 className="text-2xl font-bold mb-6 flex items-center">
-            <span className="text-esports-red mr-2">★</span> Major Achievements
+            <span className="text-esports-red mr-2">★</span> Главные достижения
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {achievements.slice(0, 3).map((achievement, index) => (
@@ -46,7 +45,7 @@ const Achievements = () => {
         
         {/* All Achievements */}
         <div className="mb-12">
-          <h2 className="text-2xl font-bold mb-6">All Achievements</h2>
+          <h2 className="text-2xl font-bold mb-6">Все достижения</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {achievements.map((achievement, index) => (
               <AchievementCard 
@@ -63,10 +62,10 @@ const Achievements = () => {
         
         {/* Awards Categories */}
         <div className="mb-12">
-          <h2 className="text-2xl font-bold mb-6">Awards by Category</h2>
+          <h2 className="text-2xl font-bold mb-6">Награды по категориям</h2>
           
           <div className="mb-8">
-            <h3 className="text-xl font-bold mb-4 text-esports-red">Tournament Victories</h3>
+            <h3 className="text-xl font-bold mb-4 text-esports-red">Победы на турнирах</h3>
             <div className="trophy-grid">
               {achievements
                 .filter(a => a.title.includes("1st"))
@@ -81,7 +80,7 @@ const Achievements = () => {
           </div>
           
           <div className="mb-8">
-            <h3 className="text-xl font-bold mb-4 text-esports-red">Individual Awards</h3>
+            <h3 className="text-xl font-bold mb-4 text-esports-red">Личные награды</h3>
             <div className="trophy-grid">
               {/* MVP Awards */}
               <div className="bg-esports-darkGray rounded-md p-3 text-center">
@@ -91,18 +90,18 @@ const Achievements = () => {
               </div>
               <div className="bg-esports-darkGray rounded-md p-3 text-center">
                 <div className="text-yellow-500 mb-2">🏅</div>
-                <p className="text-sm text-white font-bold">HLTV Top 5</p>
-                <p className="text-xs text-gray-400">2023 Player Ranking</p>
+                <p className="text-sm text-white font-bold">HLTV Топ-5</p>
+                <p className="text-xs text-gray-400">Рейтинг игроков 2023</p>
               </div>
               <div className="bg-esports-darkGray rounded-md p-3 text-center">
                 <div className="text-yellow-500 mb-2">🏅</div>
-                <p className="text-sm text-white font-bold">Clutch Master</p>
+                <p className="text-sm text-white font-bold">Мастер клатчей</p>
                 <p className="text-xs text-gray-400">BLAST Premier 2023</p>
               </div>
               <div className="bg-esports-darkGray rounded-md p-3 text-center">
                 <div className="text-yellow-500 mb-2">🏅</div>
-                <p className="text-sm text-white font-bold">Fan Favorite</p>
-                <p className="text-xs text-gray-400">Community Choice 2023</p>
+                <p className="text-sm text-white font-bold">Любимец фанатов</p>
+                <p className="text-xs text-gray-400">Выбор сообщества 2023</p>
               </div>
             </div>
           </div>
@@ -110,23 +109,23 @@ const Achievements = () => {
         
         {/* Achievement Statistics */}
         <div>
-          <h2 className="text-2xl font-bold mb-6">Achievement Statistics</h2>
+          <h2 className="text-2xl font-bold mb-6">Статистика достижений</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
             <div className="bg-esports-darkGray p-6 rounded-lg text-center">
               <p className="text-4xl font-bold text-esports-red mb-2">5</p>
-              <p className="text-gray-300">Tournament Wins</p>
+              <p className="text-gray-300">Побед на турнирах</p>
             </div>
             <div className="bg-esports-darkGray p-6 rounded-lg text-center">
               <p className="text-4xl font-bold text-esports-red mb-2">2</p>
-              <p className="text-gray-300">Silver Medals</p>
+              <p className="text-gray-300">Серебряных медалей</p>
             </div>
             <div className="bg-esports-darkGray p-6 rounded-lg text-center">
               <p className="text-4xl font-bold text-esports-red mb-2">1</p>
-              <p className="text-gray-300">Bronze Medal</p>
+              <p className="text-gray-300">Бронзовая медаль</p>
             </div>
             <div className="bg-esports-darkGray p-6 rounded-lg text-center">
               <p className="text-4xl font-bold text-esports-red mb-2">4</p>
-              <p className="text-gray-300">Individual Awards</p>
+              <p className="text-gray-300">Личных наград</p>
             </div>
           </div>
         </div>

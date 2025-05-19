@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, Trophy, User, BarChart3, ShoppingBag, Mail } from 'lucide-react';
@@ -27,23 +26,23 @@ const Navbar = () => {
           <div className="hidden md:flex items-center space-x-4">
             <Link to="/profile" className="text-gray-300 hover:text-esports-red px-3 py-2 rounded-md text-sm font-medium flex items-center">
               <User className="w-4 h-4 mr-1" />
-              Profile
+              Профиль
             </Link>
             <Link to="/achievements" className="text-gray-300 hover:text-esports-red px-3 py-2 rounded-md text-sm font-medium flex items-center">
               <Trophy className="w-4 h-4 mr-1" />
-              Achievements
+              Достижения
             </Link>
             <Link to="/analytics" className="text-gray-300 hover:text-esports-red px-3 py-2 rounded-md text-sm font-medium flex items-center">
               <BarChart3 className="w-4 h-4 mr-1" />
-              Analytics
+              Аналитика
             </Link>
             <Link to="/shop" className="text-gray-300 hover:text-esports-red px-3 py-2 rounded-md text-sm font-medium flex items-center">
               <ShoppingBag className="w-4 h-4 mr-1" />
-              Shop
+              Магазин
             </Link>
             <Link to="/contact" className="text-gray-300 hover:text-esports-red px-3 py-2 rounded-md text-sm font-medium flex items-center">
               <Mail className="w-4 h-4 mr-1" />
-              Contact
+              Контакты
             </Link>
           </div>
           
@@ -73,7 +72,7 @@ const Navbar = () => {
               onClick={toggleMenu}
             >
               <User className="w-5 h-5 mr-2" />
-              Profile
+              Профиль
             </Link>
             <Link
               to="/achievements"
@@ -81,7 +80,7 @@ const Navbar = () => {
               onClick={toggleMenu}
             >
               <Trophy className="w-5 h-5 mr-2" />
-              Achievements
+              Достижения
             </Link>
             <Link
               to="/analytics"
@@ -89,7 +88,7 @@ const Navbar = () => {
               onClick={toggleMenu}
             >
               <BarChart3 className="w-5 h-5 mr-2" />
-              Analytics
+              Аналитика
             </Link>
             <Link
               to="/shop"
@@ -97,7 +96,7 @@ const Navbar = () => {
               onClick={toggleMenu}
             >
               <ShoppingBag className="w-5 h-5 mr-2" />
-              Shop
+              Магазин
             </Link>
             <Link
               to="/contact"
@@ -105,7 +104,7 @@ const Navbar = () => {
               onClick={toggleMenu}
             >
               <Mail className="w-5 h-5 mr-2" />
-              Contact
+              Контакты
             </Link>
           </div>
         </div>

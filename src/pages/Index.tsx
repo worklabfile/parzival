@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Trophy, BarChart3, User } from 'lucide-react';
@@ -20,24 +19,24 @@ const Index = () => {
               <span className="text-white">Parzival</span>
               <span className="text-esports-red">.</span>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-300 mb-6">Professional Esports Player</p>
+            <p className="text-xl md:text-2xl text-gray-300 mb-6">Профессиональный киберспортсмен</p>
             <p className="text-gray-400 mb-8 max-w-xl">
-              One of the most decorated players in the competitive scene with multiple
-              championships and MVP awards across major tournaments.
+              Один из самых титулованных игроков в соревновательной сцене с множеством
+              чемпионских титулов и наград MVP на крупных турнирах.
             </p>
             <div className="flex flex-wrap gap-4">
               <Button 
                 className="bg-esports-red hover:bg-esports-darkRed text-white font-bold px-8 py-6"
                 asChild
               >
-                <Link to="/profile">View Profile</Link>
+                <Link to="/profile">Профиль</Link>
               </Button>
               <Button 
                 variant="outline" 
                 className="border-esports-red text-white hover:bg-esports-red/10"
                 asChild
               >
-                <Link to="/achievements">Achievements</Link>
+                <Link to="/achievements">Достижения</Link>
               </Button>
             </div>
           </div>
@@ -59,10 +58,10 @@ const Index = () => {
       {/* Stats Highlight */}
       <div className="bg-esports-darkGray py-12">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">Player Statistics</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">Статистика игрока</h2>
           <div className="stats-grid">
             <div className="bg-esports-gray rounded-md p-4 text-center">
-              <p className="text-gray-400 text-sm">Rating</p>
+              <p className="text-gray-400 text-sm">Рейтинг</p>
               <p className="text-white text-2xl font-bold">{playerStats.rating}</p>
             </div>
             <div className="bg-esports-gray rounded-md p-4 text-center">
@@ -70,19 +69,19 @@ const Index = () => {
               <p className="text-white text-2xl font-bold">{playerStats.kd}</p>
             </div>
             <div className="bg-esports-gray rounded-md p-4 text-center">
-              <p className="text-gray-400 text-sm">Impact</p>
+              <p className="text-gray-400 text-sm">Влияние</p>
               <p className="text-white text-2xl font-bold">{playerStats.impact}</p>
             </div>
             <div className="bg-esports-gray rounded-md p-4 text-center">
-              <p className="text-gray-400 text-sm">Maps</p>
+              <p className="text-gray-400 text-sm">Карты</p>
               <p className="text-white text-2xl font-bold">{playerStats.mapsPlayed}</p>
             </div>
             <div className="bg-esports-gray rounded-md p-4 text-center">
-              <p className="text-gray-400 text-sm">Win Rate</p>
+              <p className="text-gray-400 text-sm">Процент побед</p>
               <p className="text-white text-2xl font-bold">{playerStats.winRate}</p>
             </div>
             <div className="bg-esports-gray rounded-md p-4 text-center">
-              <p className="text-gray-400 text-sm">HS%</p>
+              <p className="text-gray-400 text-sm">Хедшоты %</p>
               <p className="text-white text-2xl font-bold">{playerStats.headshots}</p>
             </div>
           </div>
@@ -93,9 +92,9 @@ const Index = () => {
       <div className="py-12 bg-esports-black">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center mb-8">
-            <h2 className="text-2xl md:text-3xl font-bold">Recent Achievements</h2>
+            <h2 className="text-2xl md:text-3xl font-bold">Последние достижения</h2>
             <Link to="/achievements" className="text-esports-red hover:text-red-400 flex items-center">
-              View All
+              Смотреть все
               <svg className="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
               </svg>
@@ -124,45 +123,45 @@ const Index = () => {
       {/* Feature Highlights */}
       <div className="py-12 bg-esports-darkGray">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">Explore More</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">Узнать больше</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-esports-gray rounded-md p-6 hover:border-esports-red border-2 border-transparent transition-all duration-300">
               <User className="w-10 h-10 text-esports-red mb-4" />
-              <h3 className="text-xl font-bold mb-2">Player Profile</h3>
+              <h3 className="text-xl font-bold mb-2">Профиль игрока</h3>
               <p className="text-gray-400 mb-4">
-                Learn more about Parzival's career, gaming setup, and professional journey.
+                Узнайте больше о карьере Parzival, игровой настройке и профессиональном пути.
               </p>
               <Button 
                 className="bg-esports-red hover:bg-esports-darkRed text-white w-full"
                 asChild
               >
-                <Link to="/profile">View Profile</Link>
+                <Link to="/profile">Профиль</Link>
               </Button>
             </div>
             <div className="bg-esports-gray rounded-md p-6 hover:border-esports-red border-2 border-transparent transition-all duration-300">
               <Trophy className="w-10 h-10 text-esports-red mb-4" />
-              <h3 className="text-xl font-bold mb-2">Achievements</h3>
+              <h3 className="text-xl font-bold mb-2">Достижения</h3>
               <p className="text-gray-400 mb-4">
-                Browse through all championship wins, medals, and personal awards.
+                Просмотрите все чемпионские победы, медали и личные награды.
               </p>
               <Button 
                 className="bg-esports-red hover:bg-esports-darkRed text-white w-full"
                 asChild
               >
-                <Link to="/achievements">View Achievements</Link>
+                <Link to="/achievements">Достижения</Link>
               </Button>
             </div>
             <div className="bg-esports-gray rounded-md p-6 hover:border-esports-red border-2 border-transparent transition-all duration-300">
               <BarChart3 className="w-10 h-10 text-esports-red mb-4" />
-              <h3 className="text-xl font-bold mb-2">Performance Analytics</h3>
+              <h3 className="text-xl font-bold mb-2">Аналитика</h3>
               <p className="text-gray-400 mb-4">
-                Dive into detailed statistics and performance trends over time.
+                Изучите подробную статистику и тенденции производительности.
               </p>
               <Button 
                 className="bg-esports-red hover:bg-esports-darkRed text-white w-full"
                 asChild
               >
-                <Link to="/analytics">View Analytics</Link>
+                <Link to="/analytics">Смотреть аналитику</Link>
               </Button>
             </div>
           </div>
