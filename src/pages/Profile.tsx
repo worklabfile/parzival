@@ -31,7 +31,7 @@ const Profile = () => {
               <div className="flex items-center mb-4">
                 <h2 className="text-2xl md:text-3xl font-bold">{playerInfo.name}</h2>
                 <div className="ml-3 px-3 py-1 bg-esports-red rounded-full text-white text-xs font-bold">
-                  ПРО ИГРОК
+                  PRO ИГРОК
                 </div>
               </div>
               
