@@ -2,8 +2,12 @@ import React from 'react';
 import { X, Plus, Minus, ShoppingCart, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCartStore } from '@/store/cart';
-import { supabase } from '@/integrations/supabase/client';
+import emailjs from '@emailjs/browser';
 import { useToast } from '@/hooks/use-toast';
+
+const SERVICE_ID = 'service_xgzmohr'; // Заменить на свой
+const TEMPLATE_ID = 'template_yhkvkd1'; // Заменить на свой
+const PUBLIC_KEY = 'Pu344IAyOzx0mTsxL'; // Заменить на свой
 
 interface CartModalProps {
   isOpen: boolean;
@@ -11,7 +15,11 @@ interface CartModalProps {
 }
 
 const CartModal = ({ isOpen, onClose }: CartModalProps) => {
-  const { items: cart, removeItem: removeFromCart, updateQuantity, clearCart, totalPrice } = useCartStore();
+  const cart = useCartStore((state) => state.items);
+  const removeFromCart = useCartStore((state) => state.removeItem);
+  const updateQuantity = useCartStore((state) => state.updateQuantity);
+  const clearCart = useCartStore((state) => state.clearCart);
+  const totalPrice = useCartStore((state) => state.items.reduce((sum, item) => sum + item.price * item.quantity, 0));
   const [name, setName] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [isSubmitting, setIsSubmitting] = React.useState(false);
@@ -30,28 +38,33 @@ const CartModal = ({ isOpen, onClose }: CartModalProps) => {
       });
       return;
     }
-
+    if (!name || !email) {
+      toast({
+        title: 'Ошибка',
+        description: 'Пожалуйста, заполните все поля.',
+        variant: 'destructive',
+      });
+      return;
+    }
     setIsSubmitting(true);
-
     try {
-      // Создаем заказ для каждого товара в корзине
-      for (const item of cart) {
-        const { error } = await supabase.from('orders').insert({
-          name,
-          email,
-          product: item.name,
-          quantity: item.quantity,
-          total_price: item.price * item.quantity,
-        });
-        
-        if (error) throw error;
-      }
-      
+      // Формируем строку с заказом для письма
+      const orderDetails = cart.map(item => `${item.name} x${item.quantity} — ${item.price * item.quantity} ₽`).join('\n');
+      await emailjs.send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        {
+          to_name: name,
+          to_email: email,
+          order: orderDetails,
+          total: totalPrice.toLocaleString() + ' ₽',
+        },
+        PUBLIC_KEY
+      );
       toast({
         title: 'Заказ оформлен!',
-        description: 'Ваш заказ успешно отправлен. Мы свяжемся с вами в ближайшее время.',
+        description: 'Подтверждение отправлено на ваш email.',
       });
-      
       clearCart();
       setName('');
       setEmail('');

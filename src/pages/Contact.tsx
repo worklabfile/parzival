@@ -1,9 +1,7 @@
-
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
-import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/components/ui/use-toast';
 
 const Contact = () => {
@@ -24,7 +22,7 @@ const Contact = () => {
     }));
   };
   
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!formData.name || !formData.email || !formData.subject || !formData.message) {
@@ -35,42 +33,20 @@ const Contact = () => {
       });
       return;
     }
-    
-    try {
-      setLoading(true);
-      
-      const { error } = await supabase
-        .from('messages')
-        .insert({
-          name: formData.name,
-          email: formData.email,
-          subject: formData.subject,
-          message: formData.message
-        });
-      
-      if (error) throw error;
-      
+    setLoading(true);
+    setTimeout(() => {
       toast({
         title: "Сообщение отправлено",
         description: "Мы свяжемся с вами в ближайшее время!",
       });
-      
       setFormData({
         name: '',
         email: '',
         subject: '',
         message: ''
       });
-    } catch (error) {
-      console.error('Ошибка при отправке сообщения:', error);
-      toast({
-        title: "Не удалось отправить сообщение",
-        description: "Пожалуйста, попробуйте еще раз позже",
-        variant: "destructive"
-      });
-    } finally {
       setLoading(false);
-    }
+    }, 800);
   };
   
   return (
