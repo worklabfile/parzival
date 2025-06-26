@@ -112,14 +112,14 @@ const Shop = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             <div className="relative overflow-hidden rounded-lg h-48 group cursor-pointer">
               <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-30 transition-all duration-300 z-10"></div>
-              <img src="/placeholder.svg" alt="Одежда" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
+              <img src="https://cdn.sportmaster.ru/upload/mdm/media_content/resize/ab2/768_1024_3a25/141974680299.jpg" alt="Одежда" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
               <div className="absolute inset-0 flex items-center justify-center z-20">
                 <h3 className="text-white text-2xl font-bold">Одежда</h3>
               </div>
             </div>
             <div className="relative overflow-hidden rounded-lg h-48 group cursor-pointer">
               <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-30 transition-all duration-300 z-10"></div>
-              <img src="/placeholder.svg" alt="Аксессуары" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
+              <img src="https://cdn1.ozone.ru/s3/multimedia-h/6711581933.jpg" alt="Аксессуары" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
               <div className="absolute inset-0 flex items-center justify-center z-20">
                 <h3 className="text-white text-2xl font-bold">Аксессуары</h3>
               </div>

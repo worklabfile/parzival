@@ -1,4 +1,3 @@
-
 export const playerInfo = {
   name: "Parzival",
   realName: "Alexander Petrov",
@@ -107,7 +106,7 @@ export const performanceData = [
 export const merchItems = [
   {
     name: "Parzival Pro Jersey",
-    price: "₽7900", 
+    price: "₽7900",
     image: "/placeholder.svg"
   },
   {

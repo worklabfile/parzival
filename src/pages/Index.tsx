@@ -45,8 +45,8 @@ const Index = () => {
               <div className="absolute -inset-2 bg-esports-red opacity-10 blur-xl rounded-full animate-pulse-red"></div>
               <div className="bg-esports-darkGray p-2 rounded-full relative">
                 <img 
-                  src={playerInfo.avatar} 
-                  alt="Parzival" 
+                  src="https://i.pinimg.com/originals/ed/a7/46/eda74668dabe1dcb2cbe50a2405e07b4.jpg"
+                  alt="Parzival"
                   className="w-72 h-72 rounded-full object-cover border-2 border-esports-red"
                 />
               </div>
