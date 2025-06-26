@@ -107,31 +107,37 @@ export const merchItems = [
   {
     name: "Parzival Pro Jersey",
     price: "₽7900",
-    image: "https://s.iimg.su/s/26/QbYIR6SCQJabBTaxFupBemJHk6XDo8degH1JUChG.png"
+    image: "https://s.iimg.su/s/26/QbYIR6SCQJabBTaxFupBemJHk6XDo8degH1JUChG.png",
+    category: "Одежда"
   },
   {
     name: "Team Hoodie",
     price: "₽6400",
-    image: "https://s.iimg.su/s/26/QbYIR6SCQJabBTaxFupBemJHk6XDo8degH1JUChG.png"
+    image: "https://s.iimg.su/s/26/QbYIR6SCQJabBTaxFupBemJHk6XDo8degH1JUChG.png",
+    category: "Одежда"
   },
   {
     name: "Signature Mouse Pad",
     price: "₽2900",
-    image: "https://s.iimg.su/s/26/QbYIR6SCQJabBTaxFupBemJHk6XDo8degH1JUChG.png"
+    image: "https://s.iimg.su/s/26/QbYIR6SCQJabBTaxFupBemJHk6XDo8degH1JUChG.png",
+    category: "Аксессуары"
   },
   {
     name: "Limited Edition Snapback",
     price: "₽3400",
-    image: "https://s.iimg.su/s/26/QbYIR6SCQJabBTaxFupBemJHk6XDo8degH1JUChG.png"
+    image: "https://s.iimg.su/s/26/QbYIR6SCQJabBTaxFupBemJHk6XDo8degH1JUChG.png",
+    category: "Аксессуары"
   },
   {
     name: "Parzival Gaming Mouse",
     price: "₽8900",
-    image: "https://s.iimg.su/s/26/QbYIR6SCQJabBTaxFupBemJHk6XDo8degH1JUChG.png"
+    image: "https://s.iimg.su/s/26/QbYIR6SCQJabBTaxFupBemJHk6XDo8degH1JUChG.png",
+    category: "Аксессуары"
   },
   {
     name: "Championship T-Shirt",
     price: "₽3900",
-    image: "https://s.iimg.su/s/26/QbYIR6SCQJabBTaxFupBemJHk6XDo8degH1JUChG.png"
+    image: "https://s.iimg.su/s/26/QbYIR6SCQJabBTaxFupBemJHk6XDo8degH1JUChG.png",
+    category: "Одежда"
   }
 ];

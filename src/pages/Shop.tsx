@@ -15,9 +15,20 @@ const Shop = () => {
   const { totalItems, addItem } = useCartStore();
   const [email, setEmail] = useState('');
   const { toast } = useToast();
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
+    // Простая валидация email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      toast({
+        title: 'Ошибка',
+        description: 'Пожалуйста, введите корректный email.',
+        variant: 'destructive',
+      });
+      return;
+    }
     
     try {
       const { error } = await supabase.from('subscribers').insert({ email });
@@ -100,40 +111,61 @@ const Shop = () => {
           </div>
         </div>
         
-        {/* Все Товары */}
-        <div className="mb-12">
-          <h2 className="text-2xl font-bold mb-6">Все Товары</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {merchItems.map((item, index) => (
-              <MerchCard 
-                key={index}
-                id={`product-${index}`}
-                name={item.name}
-                price={item.price}
-                image={item.image}
-              />
-            ))}
-          </div>
-        </div>
-        
         {/* Категории */}
         <div className="mb-12">
           <h2 className="text-2xl font-bold mb-6">Категории</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            <div className="relative overflow-hidden rounded-lg h-48 group cursor-pointer">
+            {/* Все товары */}
+            <div
+              className={`relative overflow-hidden rounded-lg h-48 group cursor-pointer border-2 ${selectedCategory === null ? 'border-esports-red' : 'border-transparent'}`}
+              onClick={() => setSelectedCategory(null)}
+            >
+              <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-30 transition-all duration-300 z-10"></div>
+              <img src="https://imgproxy.virtus.pro/kDCCDGAJo9UlEVcWuL8MwKmbkNvHdcwCVQif2xUFKpk/fill/1200/630/no/1/aHR0cHM6Ly92aXJ0dXNwcm8tbWVkaWEuaGIuYml6bXJnLmNvbS9pbWFnZS9sblA2QTFpWFU1SlFPRkthcExpMkZEbVhoMXRLTU1oWEcyd1daelBXLmpwZw.png" alt="Все товары" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
+              <div className="absolute inset-0 flex items-center justify-center z-20">
+                <h3 className="text-white text-2xl font-bold">Все товары</h3>
+              </div>
+            </div>
+            {/* Одежда */}
+            <div
+              className={`relative overflow-hidden rounded-lg h-48 group cursor-pointer border-2 ${selectedCategory === 'Одежда' ? 'border-esports-red' : 'border-transparent'}`}
+              onClick={() => setSelectedCategory(selectedCategory === 'Одежда' ? null : 'Одежда')}
+            >
               <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-30 transition-all duration-300 z-10"></div>
               <img src="https://cdn.sportmaster.ru/upload/mdm/media_content/resize/ab2/768_1024_3a25/141974680299.jpg" alt="Одежда" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
               <div className="absolute inset-0 flex items-center justify-center z-20">
                 <h3 className="text-white text-2xl font-bold">Одежда</h3>
               </div>
             </div>
-            <div className="relative overflow-hidden rounded-lg h-48 group cursor-pointer">
+            {/* Аксессуары */}
+            <div
+              className={`relative overflow-hidden rounded-lg h-48 group cursor-pointer border-2 ${selectedCategory === 'Аксессуары' ? 'border-esports-red' : 'border-transparent'}`}
+              onClick={() => setSelectedCategory(selectedCategory === 'Аксессуары' ? null : 'Аксессуары')}
+            >
               <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-30 transition-all duration-300 z-10"></div>
               <img src="https://cdn1.ozone.ru/s3/multimedia-h/6711581933.jpg" alt="Аксессуары" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
               <div className="absolute inset-0 flex items-center justify-center z-20">
                 <h3 className="text-white text-2xl font-bold">Аксессуары</h3>
               </div>
             </div>
+          </div>
+        </div>
+        
+        {/* Все Товары */}
+        <div className="mb-12">
+          <h2 className="text-2xl font-bold mb-6">Все Товары</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {merchItems
+              .filter(item => !selectedCategory || item.category === selectedCategory)
+              .map((item, index) => (
+                <MerchCard 
+                  key={index}
+                  id={`product-${index}`}
+                  name={item.name}
+                  price={item.price}
+                  image={item.image}
+                />
+              ))}
           </div>
         </div>
         
