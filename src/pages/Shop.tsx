@@ -12,7 +12,7 @@ import { useToast } from '@/hooks/use-toast';
 
 const Shop = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const { totalItems } = useCartStore();
+  const { totalItems, addItem } = useCartStore();
   const [email, setEmail] = useState('');
   const { toast } = useToast();
 
@@ -49,6 +49,16 @@ const Shop = () => {
     }
   };
   
+  const handleBuyNow = () => {
+    addItem({
+      id: 'product-0',
+      name: 'Parzival Pro Jersey',
+      price: 7900,
+      image: 'https://imgproxy.virtus.pro/kDCCDGAJo9UlEVcWuL8MwKmbkNvHdcwCVQif2xUFKpk/fill/1200/630/no/1/aHR0cHM6Ly92aXJ0dXNwcm8tbWVkaWEuaGIuYml6bXJnLmNvbS9pbWFnZS9sblA2QTFpWFU1SlFPRkthcExpMkZEbVhoMXRLTU1oWEcyd1daelBXLmpwZw.png'
+    });
+    setIsCartOpen(true);
+  };
+  
   return (
     <div className="min-h-screen flex flex-col bg-esports-black text-white">
       <Navbar />
@@ -83,7 +93,7 @@ const Shop = () => {
               <div className="mb-2 inline-block px-3 py-1 bg-esports-red text-white text-sm font-bold rounded-full">НОВИНКА</div>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Джерси Игрока 2024</h2>
               <p className="text-gray-200 mb-6">Официальный командный джерси с дизайном от Parzival. Изготовлен из премиальных материалов для максимального комфорта и производительности.</p>
-              <button className="bg-esports-red hover:bg-esports-darkRed text-white font-bold py-3 px-8 rounded">
+              <button className="bg-esports-red hover:bg-esports-darkRed text-white font-bold py-3 px-8 rounded" onClick={handleBuyNow}>
                 Купить Сейчас
               </button>
             </div>
