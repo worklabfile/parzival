@@ -107,31 +107,31 @@ export const merchItems = [
   {
     name: "Parzival Pro Jersey",
     price: "₽7900",
-    image: "/placeholder.svg"
+    image: "https://s.iimg.su/s/26/QbYIR6SCQJabBTaxFupBemJHk6XDo8degH1JUChG.png"
   },
   {
     name: "Team Hoodie",
     price: "₽6400",
-    image: "/placeholder.svg"
+    image: "https://s.iimg.su/s/26/QbYIR6SCQJabBTaxFupBemJHk6XDo8degH1JUChG.png"
   },
   {
     name: "Signature Mouse Pad",
     price: "₽2900",
-    image: "/placeholder.svg"
+    image: "https://s.iimg.su/s/26/QbYIR6SCQJabBTaxFupBemJHk6XDo8degH1JUChG.png"
   },
   {
     name: "Limited Edition Snapback",
     price: "₽3400",
-    image: "/placeholder.svg"
+    image: "https://s.iimg.su/s/26/QbYIR6SCQJabBTaxFupBemJHk6XDo8degH1JUChG.png"
   },
   {
     name: "Parzival Gaming Mouse",
     price: "₽8900",
-    image: "/placeholder.svg"
+    image: "https://s.iimg.su/s/26/QbYIR6SCQJabBTaxFupBemJHk6XDo8degH1JUChG.png"
   },
   {
     name: "Championship T-Shirt",
     price: "₽3900",
-    image: "/placeholder.svg"
+    image: "https://s.iimg.su/s/26/QbYIR6SCQJabBTaxFupBemJHk6XDo8degH1JUChG.png"
   }
 ];

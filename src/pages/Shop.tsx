@@ -78,7 +78,7 @@ const Shop = () => {
         <div className="mb-12">
           <div className="relative overflow-hidden rounded-lg">
             <div className="absolute inset-0 bg-gradient-to-r from-esports-black to-transparent z-10"></div>
-            <img src="/placeholder.svg" alt="Популярный Джерси" className="w-full h-64 md:h-96 object-cover" />
+            <img src="https://imgproxy.virtus.pro/kDCCDGAJo9UlEVcWuL8MwKmbkNvHdcwCVQif2xUFKpk/fill/1200/630/no/1/aHR0cHM6Ly92aXJ0dXNwcm8tbWVkaWEuaGIuYml6bXJnLmNvbS9pbWFnZS9sblA2QTFpWFU1SlFPRkthcExpMkZEbVhoMXRLTU1oWEcyd1daelBXLmpwZw.png" alt="Популярный Джерси" className="w-full h-64 md:h-96 object-cover" />
             <div className="absolute top-0 left-0 p-6 md:p-12 z-20 max-w-lg">
               <div className="mb-2 inline-block px-3 py-1 bg-esports-red text-white text-sm font-bold rounded-full">НОВИНКА</div>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Джерси Игрока 2024</h2>
